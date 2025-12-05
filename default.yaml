@@ -1,0 +1,21 @@
+chunk:
+  size: 50000
+  overlap: 3000
+
+sketch:
+  k: 19
+  w: 10
+  strobe_k: 15
+  strobe_w: 50
+
+score:
+  match: 2
+  mismatch: -2
+  ambiguous: -1
+  gamma: 1.2
+
+gpu:
+  block_size: 128
+
+ram:
+  max_gb: 6
