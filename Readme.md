@@ -114,7 +114,7 @@ qi-align --ref human.fa --qry chimp.fa --out results/
 With custom configuration:
 
 ```
-qi-align --ref A.fa --qry B.fa          --config config/human-chimp.yaml          --out output/
+qi-align --ref A.fa --qry B.fa --config config/human-chimp.yaml --out output/
 ```
 
 Outputs:
@@ -216,3 +216,4 @@ Use it for:
 For questions or integration help, feel free to ask!
 
 Rowel S. Facunla | rowelfacunla@gmail.com
+Bobby D. Gerardo | bgerardo@nisu.edu.ph

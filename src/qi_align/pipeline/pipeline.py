@@ -40,6 +40,9 @@ from qi_align.pipeline.parallel import parallel_map
 # Logger
 from qi_align.io.logger import log
 
+#outputs
+from qi_align.stats.cigar import compress_cigar
+from qi_align.io.output_formats import cigar_to_paf, cigar_to_maf
 
 # ----------------------------------------------------------------
 # Worker function for one chunk
@@ -92,6 +95,30 @@ def run_pipeline(ref_path, qry_path, config):
 
     ref4 = encode_ascii_to_4bit(ref_full)
     qry4 = encode_ascii_to_4bit(qry_full)
+
+    # ============================================================
+    # SPECIAL CASE: sequences too small for sketching/chaining
+    # ============================================================
+    if len(ref4) < 2000 or len(qry4) < 2000:
+        log("Sequences are small — using direct single-chunk alignment.")
+
+        score_matrix = build_qi_matrix(
+            match,
+            mismatch,
+            ambiguous,
+            gamma
+        )
+
+        cigar = hybrid_global_align(ref4, qry4, score_matrix, gopen, gext)
+
+        stats = compute_alignment_stats(
+            cigar,
+            ref_length=len(ref4),
+            qry_length=len(qry4)
+        )
+
+        return cigar, stats
+
 
     # ========== (3) Extract minimizers & strobemers ==========
 
@@ -195,6 +222,36 @@ def main_cli():
 
     # save outputs
     (outdir/"alignment.cigar").write_text(cigar)
+
+    # Load sequences for auxiliary formats
+    ref_full = b"".join(fasta_reader(args.ref))
+    qry_full = b"".join(fasta_reader(args.qry))
+
+    # Short compressed CIGAR
+    short_cigar = compress_cigar(cigar)
+    (outdir/"alignment.cigar").write_text(short_cigar)
+
+    # PAF output
+    paf = cigar_to_paf(
+        query_name=Path(args.qry).stem,
+        ref_name=Path(args.ref).stem,
+        cigar=cigar,
+        qlen=len(qry_full),
+        rlen=len(ref_full)
+    )
+    (outdir/"alignment.paf").write_text(paf)
+
+    # MAF output
+    maf = cigar_to_maf(
+        ref_name=Path(args.ref).stem,
+        qry_name=Path(args.qry).stem,
+        ref_seq=ref_full,
+        qry_seq=qry_full,
+        cigar=cigar,
+    )
+    (outdir/"alignment.maf").write_text(maf)
+
+    # Stats JSON
     import json
     (outdir/"stats.json").write_text(json.dumps(stats, indent=2))
 

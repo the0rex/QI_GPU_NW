@@ -59,3 +59,26 @@ def count_ops(cigar: str):
         stats["total"] += length
 
     return stats
+
+def compress_cigar(cigar: str) -> str:
+    """
+    Convert long symbolic CIGAR (e.g., 'MMMMIIDDM') to
+    SAM-style compressed CIGAR (e.g., '4M2I2D1M').
+    """
+    if not cigar:
+        return ""
+
+    out = []
+    last = cigar[0]
+    cnt = 1
+
+    for ch in cigar[1:]:
+        if ch == last:
+            cnt += 1
+        else:
+            out.append(f"{cnt}{last}")
+            last = ch
+            cnt = 1
+
+    out.append(f"{cnt}{last}")
+    return "".join(out)
