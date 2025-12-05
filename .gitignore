@@ -1,0 +1,103 @@
+# ================================================================
+# PYTHON
+# ================================================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.pkl
+*.p
+*.egg-info/
+.eggs/
+dist/
+build/
+*.so
+*.dylib
+*.dll
+
+# Virtual environments
+.env
+.venv
+venv/
+ENV/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ================================================================
+# LOGS / OUTPUT
+# ================================================================
+logs/
+*.log
+*.out
+*.err
+
+# Pipeline outputs
+results/
+output/
+bench_output/
+examples/output/
+*.cigar
+*.json
+*.npz
+*.npy
+*.txt
+
+# GPU diagnostic dumps
+gpu_dump_*.txt
+
+# ================================================================
+# MODELS / TRAINING
+# ================================================================
+model/
+*.pt
+*.pth
+*.onnx
+
+# Training artifacts
+fnn_training.json
+train_fnn/checkpoints/
+train_fnn/runs/
+train_fnn/*.pt
+
+# ================================================================
+# DATA
+# ================================================================
+data/
+datasets/
+indelible_runs/
+fasta_sequences/
+genomes/
+*.fa
+*.fasta
+*.fai
+*.gzi
+*.gz
+*.zip
+*.tar
+*.tar.gz
+
+# ================================================================
+# OS / EDITOR TRASH
+# ================================================================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# ================================================================
+# CUDA BUILD ARTIFACTS
+# ================================================================
+*.cu.o
+*.cubin
+*.ptx
+*.sass
+*.fatbin
+cuda_build/
+# ================================================================

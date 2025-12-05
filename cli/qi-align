@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+import sys
+from qi_align.pipeline.pipeline import main_cli
+
+if __name__ == "__main__":
+    sys.exit(main_cli())
