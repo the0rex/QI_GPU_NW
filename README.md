@@ -367,7 +367,7 @@ services:
 9.1 Setting Up Development Environment
 --------------------------------------
 # Clone and install development dependencies
-git clone https://github.com/the0rex/alignment-pipeline.git
+git clone https://github.com/the0rex/QI_GPU_NW.git
 cd alignment-pipeline
 pip install -e .[dev,full,cuda]
 
@@ -527,4 +527,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ===============================================================================
 END OF DOCUMENT
+
 ===============================================================================
