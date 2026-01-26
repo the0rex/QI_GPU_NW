@@ -1,0 +1,65 @@
+# Example configuration file for alignment pipeline
+
+pipeline:
+  name: "Example Alignment Pipeline"
+  version: "1.0.0"
+  description: "Example configuration for aligning two sequences"
+
+# Input/Output settings
+io:
+  fasta_dir: "examples/"
+  default_fasta1: "test_fasta_1.fa"
+  default_fasta2: "test_fasta_2.fa"
+  output_dir: "example_results/"
+  chunk_dir: "example_chunks/"
+  visualization_dir: "example_results/visualizations/"
+  logs_dir: "example_results/logs/"
+
+# Alignment parameters (tuned for similar sequences)
+alignment:
+  gap_open: -20          # Less severe gap opening
+  gap_extend: -0.2       # Less severe gap extension
+  match_score: 5
+  mismatch_score: -4     # Less severe mismatch
+  window_size_predictor: "simple"  # Use simple heuristic
+  beam_width: 50         # Wider beam for more accuracy
+  carry_gap_state: true
+
+# Chunking parameters (smaller for testing)
+chunking:
+  default_chunk_size: 1000
+  overlap: 50            # 5% overlap
+  min_chunk_size: 100
+  max_chunk_size: 2000
+  chunk_tolerance: 0.1   # ±10%
+
+# Seeding parameters
+seeding:
+  kmer_size: 15          # Smaller k for testing
+  syncmer_size: 3        # Smaller s for testing
+  syncmer_position: 1
+  window_min: 10
+  window_max: 50
+  max_occurrences: 100   # Lower threshold for testing
+
+# Performance settings
+performance:
+  use_multiprocessing: false  # Disable for debugging
+  num_workers: 1              # Single worker
+  chunk_buffer_size: 5
+  cache_enabled: true
+  cache_maxsize: 1
+
+# Debug settings
+debug:
+  verbose: true
+  save_intermediate: true     # Keep chunks for inspection
+  log_level: "DEBUG"          # Detailed logging
+  profile_performance: true   # Track performance
+
+# Visualization settings
+visualization:
+  enabled: true
+  create_all: true
+  interactive_html: true
+  save_raw_data: true

@@ -1,0 +1,21 @@
+name: alignment_pipeline
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - numpy
+  - biopython
+  - pandas
+  - scikit-learn
+  - tensorflow
+  - matplotlib
+  - seaborn
+  - plotly
+  - pybind11
+  - pip
+  - pip:
+    - joblib
+    - tqdm
+    - pyyaml
+    - psutil

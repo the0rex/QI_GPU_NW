@@ -1,0 +1,87 @@
+[build-system]
+requires = [
+    "setuptools>=77.0.0",
+    "wheel",
+    "pybind11>=2.10.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alignment-pipeline-gpu"
+version = "2.0.0"
+description = "A high-performance sequence alignment pipeline with PyTorch GPU acceleration"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+
+authors = [
+    { name = "Rowel Facunla", email = "rowel.facunla@tip.edu.ph" }
+]
+
+keywords = [
+    "bioinformatics",
+    "sequence-alignment",
+    "gpu",
+    "pytorch",
+    "genomics",
+]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: C++",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+]
+
+dependencies = [
+    "numpy>=1.21.0",
+    "biopython>=1.79",
+    "pandas>=1.3.0",
+    "scikit-learn>=1.0.0",
+    "matplotlib>=3.5.0",
+    "pybind11>=2.10.0",
+    "tqdm>=4.64.0",
+    "pyyaml>=6.0",
+    "colorama>=0.4.6",
+    "psutil>=5.9.0",
+    "keras>=3.9.2",
+    "tensorflow==2.16.1",
+    "seaborn>=0.11.0",
+    "plotly>=5.5.0",
+]
+
+[project.optional-dependencies]
+gpu = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "torchaudio>=2.0.0",
+]
+viz = [
+    "seaborn>=0.11.0",
+    "plotly>=5.5.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-benchmark>=3.4.1",
+    "black>=22.0.0",
+    "flake8>=5.0.0",
+]
+
+[project.scripts]
+align-pipeline = "alignment_pipeline.scripts.run_pipeline:main"
+align-viz = "alignment_pipeline.scripts.visualize_results:main"
+align-diag = "alignment_pipeline.scripts.diagnostics:main"
+align-gpu-test = "alignment_pipeline.scripts.gpu_test:main"
+align-benchmark = "alignment_pipeline.scripts.benchmark:main"
+align-config = "alignment_pipeline.scripts.config_generator:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
