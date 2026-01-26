@@ -132,3 +132,7 @@ chunks_tmp/
 
 # Windows
 Thumbs.db
+
+# Large files
+whole_genome_test_set/
+
