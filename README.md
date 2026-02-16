@@ -3,7 +3,7 @@ Sequence Alignment Pipeline
 
 A high-performance, quantum-inspired sequence alignment pipeline with GPU acceleration and chunked processing.
 
-Author: Rowel Facunla
+Authors: Rowel S. Facunla & Bobby D. Gerardo
 Version: 2.0.0
 Status: Production Ready with GPU Acceleration
 
@@ -529,3 +529,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 END OF DOCUMENT
 
 ===============================================================================
+
